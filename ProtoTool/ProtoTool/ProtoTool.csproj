@@ -46,16 +46,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Core\CodeGenerator\CodeGenerator\FieldSerializer.cs" />
+    <Compile Include="Core\CodeGenerator\CodeGenerator\MessageCode.cs" />
+    <Compile Include="Core\CodeGenerator\CodeGenerator\MessageSerializer.cs" />
+    <Compile Include="Core\CodeGenerator\CodeGenerator\ProtoCode.cs" />
+    <Compile Include="Core\CodeGenerator\FileParser.cs" />
+    <Compile Include="Core\CodeGenerator\LocalParser.cs" />
+    <Compile Include="Core\CodeGenerator\Options.cs" />
+    <Compile Include="Core\CodeGenerator\ProtocolParser\ProtocolParser.cs" />
+    <Compile Include="Core\CodeGenerator\ProtocolParser\ProtocolParserExceptions.cs" />
+    <Compile Include="Core\CodeGenerator\ProtocolParser\ProtocolParserFixed.cs" />
+    <Compile Include="Core\CodeGenerator\ProtocolParser\ProtocolParserKey.cs" />
+    <Compile Include="Core\CodeGenerator\ProtocolParser\ProtocolParserMemory.cs" />
+    <Compile Include="Core\CodeGenerator\ProtocolParser\ProtocolParserVarInt.cs" />
+    <Compile Include="Core\CodeGenerator\ProtoParser.cs" />
+    <Compile Include="Core\CodeGenerator\ProtoPrepare.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\Field.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\FieldRule.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\IComment.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\ProtoBuiltin.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\ProtoCollection.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\ProtoEnum.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\ProtoFormatException.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\ProtoMessage.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\ProtoType.cs" />
+    <Compile Include="Core\CodeGenerator\Proto\Search.cs" />
+    <Compile Include="Core\CodeGenerator\SourcePath.cs" />
+    <Compile Include="Core\CodeGenerator\TokenReader.cs" />
+    <Compile Include="Core\CodeWriter\Code\CodeWriter.cs" />
+    <Compile Include="Core\CodeWriter\Code\Name.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\ConsoleView.cs" />
+    <Compile Include="View\LoginView.cs" />
+    <Compile Include="View\ParamView.cs" />
+    <Compile Include="View\ProtoView.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Network\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

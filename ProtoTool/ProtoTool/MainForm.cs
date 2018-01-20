@@ -1,13 +1,18 @@
 ﻿using System;
 using CCWin;
+using ProtoTool.View;
 
 namespace ProtoTool
 {
-    public partial class Form1 : CCSkinMain
+    public partial class MainForm : CCSkinMain
     {
-        public Form1()
+        private ProtoView protoView;
+
+        public MainForm()
         {
             InitializeComponent();
+
+            protoView = new ProtoView(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,6 +58,16 @@ namespace ProtoTool
         private void skinButton1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 刷新ProtoBuf Code Files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void onReflushProtoCode(object sender, EventArgs e)
+        {
+            protoView.ReflushProtobufs();
         }
     }
 }
