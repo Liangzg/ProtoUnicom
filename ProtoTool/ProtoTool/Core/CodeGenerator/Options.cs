@@ -95,6 +95,7 @@ namespace SilentOrbit.ProtocolBuffers
             options.FixNameclash = true;
             options.GenerateDefaultConstructors = true;
             options.SkipSerializeDefault = true;
+            options.Nullable = true;
 
             bool error = false;
 
