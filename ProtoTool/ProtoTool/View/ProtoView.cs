@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using CCWin.SkinControl;
 using Microsoft.CSharp;
@@ -21,7 +22,7 @@ namespace ProtoTool.View
         /// ProtoBuf 描述文件的根目录
         /// --fix-nameclash --ctor --utc --skip-default ..\..\..\TestProgram\ProtoSpec\ImportAll.proto --output ..\..\..\TestProgram\Generated\Generated.cs
         /// </summary>
-        private const string genInputDir = @"..\..\..\ProtoTool\GenProto\ProtoSpec\";
+        public const string genInputDir = @"..\..\..\ProtoTool\GenProto\ProtoSpec\";
 
         private const string genOutputDir = @"..\..\..\ProtoTool\GenProto\Generated\Generated.cs";
 
@@ -57,14 +58,15 @@ namespace ProtoTool.View
             Dictionary<string , TreeNode> nodes = new Dictionary<string, TreeNode>();
             foreach (Type type in types)
             {
+                if (string.IsNullOrEmpty(type.Namespace))    continue;
+
                 string fileName = type.Name;
                 string[] spaceNames = type.Namespace.Split('.');
                 string namespaceName = spaceNames[spaceNames.Length - 1];
-                
+                requireTypes[fileName.ToLower()] = type;
+
                 if (fileName.ToLower().StartsWith("c2s"))
                 {
-                    requireTypes[fileName] = type;
-
                     TreeNode rootNode = null;
                     if (!nodes.TryGetValue(namespaceName, out rootNode))
                     {
@@ -84,6 +86,7 @@ namespace ProtoTool.View
         /// <returns></returns>
         public Type GetProtoType(string protoName)
         {
+            protoName = protoName.ToLower();
             if (!requireTypes.ContainsKey(protoName)) return null;
 
             return requireTypes[protoName];
@@ -182,25 +185,26 @@ namespace ProtoTool.View
             string[] codes = new string[codePaths.Length];
             for (int i = 0; i < codePaths.Length; i++)
             {
-                codes[i] = File.ReadAllText(codePaths[i]);
+                codes[i] = File.ReadAllText(codePaths[i] , Encoding.UTF8);
             }
             CSharpCodeProvider complier = new CSharpCodeProvider();
             //设置编译参数
             CompilerParameters paras = new CompilerParameters();
+
+            
             //引入第三方dll
             paras.ReferencedAssemblies.Add(@"System.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.IO.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Text.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Collections.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Collections.Generic.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.configuration.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Data.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Management.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Web.dll");
-            //            paras.ReferencedAssemblies.Add(@"System.Xml.dll");
-            string protoBufLibPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Libs\ProtobufLib.dll");
-            protoBufLibPath = Path.GetFullPath(protoBufLibPath);
-            paras.ReferencedAssemblies.Add(protoBufLibPath);
+//            paras.ReferencedAssemblies.Add(@"System.IO.dll");
+//            paras.ReferencedAssemblies.Add(@"System.Collections.dll");
+//                        paras.ReferencedAssemblies.Add(@"System.configuration.dll");
+//                        paras.ReferencedAssemblies.Add(@"System.Data.dll");
+//                        paras.ReferencedAssemblies.Add(@"System.Management.dll");
+//                        paras.ReferencedAssemblies.Add(@"System.Web.dll");
+//                        paras.ReferencedAssemblies.Add(@"System.Xml.dll");
+//            string protoBufLibPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Libs\ProtobufLib.dll");
+//            protoBufLibPath = Path.GetFullPath(protoBufLibPath);
+//            paras.ReferencedAssemblies.Add(protoBufLibPath);
+            
             //引入自定义dll
             //paras.ReferencedAssemblies.Add(@"D:\自定义方法\自定义方法\bin\LogHelper.dll");
             //是否内存中生成输出

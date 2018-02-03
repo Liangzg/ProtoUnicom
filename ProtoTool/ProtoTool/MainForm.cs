@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using CCWin;
 using CCWin.SkinControl;
+using LuaFramework;
 using ProtoTool.View;
 
 namespace ProtoTool
@@ -12,12 +13,17 @@ namespace ProtoTool
 
         private ParamView paramView;
 
+        private LoginView loginView;
+
+        private ConsoleView consoleView;
         public MainForm()
         {
             InitializeComponent();
 
             protoView = new ProtoView(this);
             paramView = new ParamView(this);
+            loginView = new LoginView(this);
+            consoleView = new ConsoleView(this);
         }
 
         #region -----Public Properties------
@@ -25,6 +31,11 @@ namespace ProtoTool
         public SkinTreeView ProtoTree
         {
             get { return protoTree; }
+        }
+
+        public ProtoView ProtoView
+        {
+            get { return protoView; }
         }
 
         public SkinFlowLayoutPanel ParamFlowPanel
@@ -107,7 +118,32 @@ namespace ProtoTool
         /// <param name="e"></param>
         private void onRequireClick(object sender, EventArgs e)
         {
+            ByteBuffer byteBuf = paramView.InstanceProtoClass();
+            NetworkManager.Instance.SendMessage(byteBuf);
+        }
 
+        private void onLoginClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string ipAddress = this.ipTxt.Text;
+                int port = Convert.ToInt32(this.portTxt.Text);
+                int serverNo = Convert.ToInt32(this.serverIdTxt.Text);
+                int hostId = Convert.ToInt32(this.hostIdTxt.Text);
+                string serverName = this.serverNameTxt.Text;
+                
+                loginView.StartLogin(this.accountTxt.Text, serverNo, hostId, serverName , ipAddress , port);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        private void onFormClosed(object sender, FormClosedEventArgs e)
+        {
+            NetworkManager.Instance.OnDestroy();
         }
     }
 }

@@ -1,0 +1,51 @@
+﻿message C2s_activity_baseui {				//获取活动大厅界面信息
+	required int32 place_holder = 1;
+}
+
+message Activity_oneui {
+	required int32 act_id = 1;
+	required int32 type = 2;				//1开启中,2待开启
+	optional int32 exc_actid = 3;			//需要替换成的活动id
+}
+
+message Activity_everyday {
+	required int32 ed_id = 1;
+	required int32 rcnt = 2;				//当前剩余次数
+	optional int32 has_buy = 3;				//非0为还有购买次数
+}
+
+message S2c_activity_baseui {
+	repeated Activity_oneui ainfo = 1;
+	repeated Activity_everyday edinfo = 2;
+	repeated int32 ginfo = 3;				//今日可领取奖励的id	
+}
+
+message C2s_activity_icon {					//获取图标信息
+	required int32 place_holder = 1;
+}
+
+message Activity_oneicon {
+	required int32 act_id = 1;
+	required int32 stime = 2;					//开启时间
+	required int32 etime = 3;					//结束时间
+	optional int32 exc_actid = 4;			//需要替换成的活动id
+}
+
+message S2c_activity_icon {					//获取图标信息
+	required int32 ntime = 1;					//当前时间		//lua 中的os.time()
+	repeated Activity_oneicon actinfo = 2;		//活动中的
+	repeated Activity_oneicon nextinfo = 3;		//下一个活动
+}
+
+message C2s_activity_battle {
+	required int32 place_holder = 1;
+}
+
+message Activity_one_battle {
+	required int32 act_id = 1;
+	required int32 type = 2;
+}
+
+message S2c_activity_battle {
+	repeated Activity_one_battle binfo = 1;
+}

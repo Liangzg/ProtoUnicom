@@ -1,0 +1,588 @@
+﻿message S2c_aoi_sync_int {
+	required string rid = 1;
+	required string key =2; 	  		//key
+	required int32 value = 3; 			//整型值	
+}
+
+message S2c_aoi_sync_repeatint {
+	required string rid = 1;
+	required string key = 2; 	  		//key
+	repeated int32 value = 3; 			//整型值	
+}
+
+message S2c_aoi_sync_string {			//信息字符串
+	required string rid = 1;
+	required string key = 2;			//key
+	required string value = 3;			//字符窜
+}
+
+message Aoi_buff_time {
+	required int32 buffid = 1;
+	required int32 start_frame = 2;		//开始的帧
+	required int32 con_frame = 3;		//持续多久的帧
+}
+
+message S2c_aoi_buff_time {
+	required string rid = 1;
+	required int32 s_frame = 2; 		//服务端当前帧
+	required int32 sec_frame = 3;		//1秒多少帧
+	repeated Aoi_buff_time binfo = 4;
+}
+
+message S2c_aoi_playershield {
+	required string id = 1;
+	optional int32 shield_hp = 2;						//护盾血量
+	optional int32 shield_hpmax = 3;					//护盾最大血量
+	optional int32 shield_buffid = 4;					//护盾id编号
+}
+
+message S2c_aoi_syncplayer {
+	required string rid = 1;
+	required string name = 2;
+	required int32 grade = 3;
+	required int32 shape = 4;
+	required int32 speed = 5;
+	required int32 dir360 = 6;
+	optional int32 weapon = 7;							//武器编号
+	optional int32 setno = 8;							//套装编号
+	optional int32 fashion = 9;							//时装编号
+	required string teamids = 10;						//如果有,第一个肯定是队长,例如	3;4;2
+	required int32 comp = 11;							//阵营
+	repeated int32 buff = 12;
+	optional string adname = 13;		
+	optional string extend = 14;
+	optional string magic = 15;							//id;shape	法器(灵器)
+	optional string partner = 16;						//id;shape	伙伴
+	optional string pkinfo = 17;						//pkmode=;[team_id=;][club_id=;][evil_state][server_id=;][hostileclub=;]
+	required int32 sex = 18;
+	optional int32 up_mount = 19;						//主角上下马状态  1上马 0下马
+	optional int32 lingqin_model = 20;					//灵琴外形编号
+	optional int32 lingyi_model = 21;					//灵翼外形编号
+	optional int32 partnerhorse_model = 22;				//灵骑外形编号(灵宝)
+	optional int32 pet_model = 23;						//宠物外形编号
+	optional int32 shenjian_model = 24;					//神剑外形编号
+	optional int32 shenyi_model = 25;					//神翼外形编号
+	optional int32 mount_model = 26;					//坐骑外形编号
+	optional int32 jingmai_model = 27;					//经脉外形编号
+	optional int32 up_horse = 28;						//伙伴上下马状态  1上马 0下马
+	optional int32 score = 29;
+	optional int32 dazuo = 30;							//打坐		
+	optional int32 isyunbiao = 31;						//运镖标志位	
+	optional string clubname = 32;						//帮派名字
+	optional string clubpost = 33;						//帮派职位
+	optional int32 lingqin_model_state = 34;			//灵琴外形 显示1 隐藏0
+	optional int32 lingyi_model_state = 35;				//灵翼外形 显示1 隐藏0
+	optional int32 partnerhorse_model_state = 36;		//灵骑外形 显示1 隐藏0
+	optional int32 pet_model_state = 37;				//宠物外形 显示1 隐藏0
+	optional int32 shenjian_model_state = 38;			//神剑外形 显示1 隐藏0
+	optional int32 shenyi_model_state = 39;				//神翼外形 显示1 隐藏0
+	optional int32 magic_model_state = 40;				//法器(灵器) 显示1 隐藏0
+	optional int32 partner_model_state = 41;			//伙伴 显示1 隐藏0
+	optional int32 vip = 42;							//vip
+	optional int32 double_xiulian = 43;					//双修
+	optional int32 title = 44;							//称号
+	optional int32 dx_effect = 45;						//双修特效 客户端要求显示
+	optional int32 photo = 46;							//头像
+	optional int32 dx_dir360 = 47;						//双修人物朝向
+	
+	optional S2c_aoi_buff_time btime = 48;			//倒计时的buff显示
+	optional string matename = 49;					//伴侣名字
+	optional int32 weddingshapestate = 50;			//婚礼游行时玩家角色模型状态是否隐藏 显示0 隐藏1
+	optional int32 multikill = 51;
+	
+	optional int32 shield_hp = 52;						//护盾血量
+	optional int32 shield_hpmax = 53;					//护盾最大血量
+	optional int32 shield_buffid = 54;					//护盾id编号
+	optional string enemyname =55;					//仇人克星
+	
+	optional int32 siegewar = 56;					//攻城战标识
+}
+
+message S2c_aoi_syncnpc {
+	required string rid = 1;
+	required string name = 2;
+	required int32 grade = 3;
+	required int32 shape = 4;
+	required int32 dir = 5;
+	required int32 canattk = 6;							//1可以攻击的,0不可以攻击的
+	required int32 comp = 7;							//阵营
+	repeated int32 buff = 8;
+	optional string extend = 9;
+	optional int32 shield_hp = 10;						//护盾血量
+	optional int32 shield_hpmax = 11;					//护盾最大血量
+	optional int32 shield_buffid = 12;					//护盾id编号
+	optional int32 score = 13;
+	
+	optional S2c_aoi_buff_time btime = 14;				//倒计时的buff显示
+	repeated string clublist = 15;						//同盟帮派列表
+	optional int32 siegewar = 16;						//攻城战标识
+}
+
+message Aoi_add_normalmsg {
+	required int32 map_no = 1;
+	required int32 map_id = 2;
+	required string rid = 3;
+	required int32 x = 4;
+	required float y = 5;
+	required int32 z = 6;
+	required int32 hp = 7;
+	required int32 hpmax = 8;
+	required int32 char_no = 9;
+}
+
+message S2c_aoi_addplayer {
+	required Aoi_add_normalmsg nmsg = 1;
+	required S2c_aoi_syncplayer sync = 2;
+}
+
+message S2c_aoi_addself {
+	required Aoi_add_normalmsg nmsg = 1;
+	required S2c_aoi_syncplayer sync = 2;
+}
+
+message S2c_aoi_addnpc {
+	required Aoi_add_normalmsg nmsg = 1;
+	required S2c_aoi_syncnpc sync = 2;
+}
+
+message S2c_aoi_move {					//主城移动同步协议
+	required string rid = 1;
+	required int32 x = 2;
+	required float y = 3;
+	required int32 z = 4;
+	optional float speed = 5;			//移动到这点的时间
+	optional int32 type = 6;
+}
+
+message S2c_aoi_leave {
+	required int32 map_no = 1;
+	required int32 map_id = 2;
+	required string rid = 3;
+}
+
+message S2c_aoi_move_error {
+	required int32 ox = 1;
+	required float oy = 2;
+	required int32 oz = 3;
+}
+
+message S2c_aoi_jump {					//在同场景中跳转用(非技能跳跃)
+	required int32 map_no = 1;
+	required int32 map_id = 2;	
+	required string rid = 3;
+	required int32 x = 4;
+	required float y = 5;
+	required int32 z = 6;
+}
+
+message C2s_aoi_convey_door {			//到达传送门
+	required int32 now_mapid = 1;
+	required int32 now_mapno = 2;
+	required int32 to_mapno = 3;
+	required int32 doorno = 4;
+	optional int32 to_mapid = 5;	
+}
+message S2c_aoi_hp {
+	required string att_id = 1;		//如果att_id为0则为系统加血扣血
+	required string id = 2;
+	required int32 hp = 3;			//显示血量的
+	required int32 nhp = 4;			//当前血量
+	required int32 hp_max = 5;		//最大血量
+	required int32 type = 6;		//hp扣血加血方式    0:普通伤害(加血),1:暴击伤害,2:破格伤害,3:暴击破格伤害,4:miss,5:无敌
+	required int32 isdie = 7;		//1是,0否
+	optional int32 htype = 8;		//灵宠1,法器2
+	optional int32 die_x = 9;		//死亡格子坐标
+	optional int32 die_y = 10;		//死亡格子坐标
+	optional int32 shpstamp = 11;	//护盾时间戳
+}
+
+message C2s_aoi_skill_act {			//技能开始广播
+	required int32 skill_id = 1;
+	optional string tar_id = 2;
+	optional int32 tx = 3;			//如果是aoe,有时候是没有目标点释放的,就需要有个释放点
+	optional int32 ty = 4;			//如果是aoe,有时候是没有目标点释放的,就需要有个释放点
+	optional string axyz = 5;		//直接转发
+	
+	required int32 sx = 6;			//施法者坐标
+	required int32 sz = 7;
+	optional int32 timestamp = 8;	
+}
+
+message Aoi_skill_calinfo {
+	required string cal_id = 1;
+	required string att_id = 2;
+	required int32 s_rid = 3;		//技能运行id
+	required int32 checktime = 4;	//时间
+}
+
+message C2s_aoi_skill_calinfo {
+	required int32 s_rid = 1;		//技能运行id
+	required int32 checktime = 2;	//时间	
+	optional int32 timestamp = 3;
+}
+
+message S2c_aoi_skill_act {			//技能广播
+	required int32 skill_id = 1;
+	required string att_id = 2;
+	required int32 postype = 3;			//施法者的坐标类型:1是格子坐标,2是真是坐标
+	required float x = 4;				//施法者的坐标
+	required float y = 5;
+	required float z = 6;
+	optional string tar_id = 7;
+	optional int32 tx = 8;			//如果是aoe,有时候是没有目标点释放的,就需要有个释放点
+	optional int32 ty = 9;			//如果是aoe,有时候是没有目标点释放的,就需要有个释放点	
+	
+	optional Aoi_skill_calinfo cal = 10;
+	optional int32 timestamp = 11;
+	optional int32 htype = 12;		//灵宠1,法器2
+}
+
+message C2s_aoi_skill_hit {			//击中
+	required int32 skill_id = 1;
+	optional string tar_id = 2;		//注意:主目标跟分目标计算公式不一样,所以如果有主目标的一定要把id发过来
+	optional int32 tx = 3;			//如果是aoe,有时候是没有目标点释放的,就需要有个释放点
+	optional int32 ty = 4;			//如果是aoe,有时候是没有目标点释放的,就需要有个释放点
+	optional string axyz = 5;		//直接转发
+	
+	required int32 sx = 6;			//施法者坐标
+	required int32 sz = 7;
+	optional int32 timestamp = 8;
+}
+
+message Aoi_skill_char {
+	required string tar_id = 1;
+	required int32 hp = 2;			//显示血量的,(加buff和非攻击技能加减血这里会是0,具体显示血量是在S2c_aoi_hp,因为童话那边如果不这样做,非技能就没目标)
+	required int32 nhp = 3;			//当前血量
+	required int32 hpmax = 4;		//最大血量
+	required int32 type = 5;		//hp扣血加血方式   	0:普通伤害(加血),1:暴击伤害,2:破格伤害,3:暴击破格伤害,4:miss,5:无敌,6.非攻击技能加减血,7:加buff
+	required int32 isdie = 6;		//1是,0否
+	optional float x = 7;			//击退的坐标移动(真实的客户端坐标)
+	optional float y = 8;
+	optional float z = 9;
+	optional int32 shpstamp = 10;	//护盾时间戳
+}
+
+message S2c_aoi_skill_hit {
+	required int32 skill_id = 1;
+	required string att_id = 2;			//施法者
+	required int32 postype = 3;			//施法者的坐标类型:1是格子坐标,2是真是坐标
+	required float x = 4;				//施法者的坐标
+	required float y = 5;
+	required float z = 6;
+	
+	optional int32 tx = 7;				//受击位置
+	optional int32 ty = 8;
+	optional string axyz = 9;
+	
+	repeated Aoi_skill_char tar_chars = 10;			//击中的目标
+	optional int32 timestamp = 11;
+	required int32 isbegin = 12;	//1是,0否			是否是直接出技能,只有npc才用此字段,npc瞬发不发S2c_aoi_skill_act
+	optional int32 htype = 13;		//灵宠1,法器2
+}
+
+message S2c_aoi_client_addnpc {
+	required string extend = 1;
+}
+
+message S2c_aoi_sp {
+	required int32 sp = 1;				//sp的值
+}
+
+message S2c_aoi_skill_ctime {			//技能冷却时间
+	required string id = 1;				//技能的拥有者id
+	required int32 skill_id = 2;
+	required int32 ctime = 3;			//冷却时间				毫秒
+}
+
+message S2c_aoi_ui_hp {
+	required string id = 1;
+	required int32 hp = 2;
+	required int32 hp_max = 3;
+}
+
+message S2c_aoi_ui_buff {
+	required string id = 1;
+	required int32 buff_id = 2;
+	required int32 type = 3;			//1删除，2添加
+}
+
+message Aoi_ui_skill {
+	required int32 skill_id = 1;
+	required int32 skill_type = 2;		//1:普通攻击,2:技能攻击,3:合体技
+	required int32 skill_lv = 3;		//技能等级
+}
+
+message S2c_aoi_own_uiinfo {
+	required string id = 1;				//技能的拥有者
+	repeated Aoi_ui_skill uiskill = 2;
+	optional int32 artimid = 3;			//神器武学
+}
+
+message S2c_aoi_skill_add {
+	required string id = 1;
+	repeated Aoi_ui_skill uiskill = 2;
+}
+
+message S2c_aoi_passskill_change {
+	required string id = 1;
+	optional int32 omid = 2;			//被替换的技能编号
+	required int32 nmid = 3;
+	required int32 isset = 4;
+}
+
+message Aoi_stips_circle {
+	required int32 x = 1;		//圆点x
+	required int32 y = 2;		//圆点y
+	required int32 r = 3;		//半径r
+}
+
+message Aoi_stips_line {
+	required int32 ax = 1;		//攻击者x   注意:90度的方向为攻击者对目标点
+	required int32 ay = 2;		//攻击者y	
+	required int32 tx = 3;		//目标点x	
+	required int32 ty = 4;		//目标点x	
+	required int32 atype = 5;	//1为以攻击者为点延伸,2为以目为点延伸
+	required int32 len = 6;		//线长
+	required float accu = 7;	//精确宽,客户端的先宽则为accu * 2(左右两边)
+	repeated int32 degree = 8;	//角度
+}
+
+message Aoi_stips_sector {
+	required int32 ax = 1;		//攻击者x   注意:90度的方向为攻击者对目标点
+	required int32 ay = 2;		//攻击者y
+	required int32 tx = 3;		//目标点x	
+	required int32 ty = 4;		//目标点x	
+	required int32 atype = 5;	//1为以攻击者为点延伸,2为以目为点延伸
+	required int32 len = 6;		//线长	
+}
+
+message S2c_aoi_skill_tips {			//添加技能提示
+	required int32 tips_id = 1;	
+	repeated Aoi_stips_circle circle = 2;
+	repeated Aoi_stips_line line = 3;
+	repeated Aoi_stips_sector sector = 4;
+}
+
+message S2c_aoi_skill_deltips {			//删除技能提示
+	required int32 tips_id = 1;
+}
+
+message S2c_aoi_team_hp {
+	required string id = 1;
+	required int32 hp = 2;
+	required int32 hp_max = 3;
+}
+
+message S2c_aoi_teaminfo {			//组队的队员信息
+	required string id = 1;
+	required string name = 2;
+	required int32 grade = 3;
+	required int32 pos = 4;				//在队伍里面的排位
+	required int32 hp = 5;
+	required int32 hpmax = 6;
+	required int32 is_leader = 7;		//1是队长,0否
+	required int32 shape = 8;
+}
+
+message S2c_aoi_team_cleader {			//修改队长
+	required string leaderid = 1;
+}
+
+message S2c_aoi_team_offline {
+	required string id = 1;
+}
+
+message S2c_aoi_team_leave {
+	required string id = 1;
+}
+
+message C2s_aoi_move {
+	repeated int32 pos = 1; // x z
+	required float y = 2;
+	required int32 dir360 = 3;			//玩家移动到pos时的方向 0-360度
+	optional float speed = 4;
+	optional int32 type = 5;			//状态,1为冲刺
+}
+
+message C2s_aoi_player_fly { 		//跳跃信息同步c2s
+	repeated int32 pos = 1; // x z
+	required float y = 2;
+	required int32 type = 3;			// 状态,2为1段跳，3为2段跳
+	required float time = 4; 			// 跳跃最大时间
+	required int32 dir360 = 5;
+	optional float vertSpeed = 6; 		// 水平方向速度
+	optional float horizSpeed = 7; 		// 垂直方向初始速度
+	optional float horizAccSpeed = 8; 	// 水平反方向初始加速度
+	optional float horizEndSpeed = 9; 	// 落下时水平速度
+	repeated float syncpos = 10;		// 同步位置
+	required float timer = 11;			// 同步时间
+}
+
+message C2s_aoi_player_fly_finished {
+	repeated int32 pos = 1; // x z
+	repeated float syncpos = 2;
+	required float timer = 3;			// 同步时间
+}
+
+message S2c_aoi_player_fly {		//跳跃信息同步s2c
+	repeated int32 pos = 1; // x z
+	required float y = 2;
+	required string id = 3;
+	required int32 type = 4;			// 状态,2为1段跳，3为2段跳，4为位移同步
+	required int32 dir360 = 5;
+	optional float vertSpeed = 6; 		// 水平方向速度
+	optional float horizSpeed = 7; 		// 垂直方向初始速度
+	optional float horizAccSpeed = 8; 	// 水平反方向初始加速度
+	optional float horizEndSpeed = 9; 	// 落下时水平速度
+	repeated float syncpos = 10;		// 同步位置
+	required float timer = 11;			// 同步时间
+}
+
+message S2c_aoi_player_fly_finished {
+	required string id = 1;
+	repeated int32 pos = 2; // x z
+	repeated float syncpos = 3;
+	required float timer = 4;			// 同步时间
+}
+
+message S2c_aoi_player_fly_error {
+	repeated int32 pos = 1; // x z
+	required float y = 2;
+}
+
+message C2s_aoi_plot_jump {				//剧情跳
+	required int32 now_mapid = 1;
+	required int32 now_mapno = 2;
+	required int32 to_mapno = 3;
+	required int32 doorno = 4;
+	required int32 type = 5;			//1开始,2结束
+	repeated int32 pos = 6;				//x z(格子坐标)
+	repeated float syncpos = 7;
+}
+
+message S2c_aoi_plot_jump {
+	required string rid = 1;
+	required int32 now_mapid = 2;
+	required int32 now_mapno = 3;
+	required int32 to_mapno = 4;
+	required int32 doorno = 5;
+	required int32 type = 6;			//1开始,2结束
+	repeated int32 pos = 7;				//x z(格子坐标)
+	repeated float syncpos = 8;	
+}
+
+message Aoi_bufftips {
+	required int32 photo = 1;			//图标
+	required string name = 2;			//名字
+	repeated string key = 3;
+	repeated int32 value = 4;
+	repeated string svalue = 5;	
+}
+
+message C2s_aoi_bufftips {
+	required string rid = 1;
+}
+
+message S2c_aoi_bufftips {
+	required string rid = 1;
+	repeated Aoi_bufftips tips = 2;
+}
+
+message S2c_aoi_flydodge {
+	required int32 flydodge = 1;
+	required int32 cooltime = 2;
+	optional int32 isserver = 3;			//1是服务端发的
+}
+
+
+//场景附近公共聊天
+message S2c_aoi_chat_public {
+	required int32 channel = 1;		//频道
+	required int32 send_type = 2;	//发送类型 1大喇叭 2小喇叭 0普通发话
+	required string chat_name = 3;	//说话者名字
+	required string chat_msg = 4;	//说话内容
+	required int32 sex = 5;			//性别1男2女
+	required string uid = 6;		//说话者uid
+	required int32 chat_time = 7;	//时间
+	
+	optional int32 grade = 8;		//等级
+	optional int32 photo = 9;		//头像 
+	optional string voice_sn = 10;	//声音sn编号
+	optional int32 voice_time = 11;	//声音时长
+	optional string club_id = 12;	//公会id
+	optional int32 team_id = 13;	//队伍id
+	optional int32 vip = 14;
+	
+	required int32 host_id = 15;	//服务端当前区服编号, 合服后合服的也是一样的
+}
+
+message C2s_aoi_sprint {			//冲刺
+	repeated int32 pos = 1; 	// 服务端记录当前x z(格子)
+	repeated float fpos = 2;	// 转发给客户端的目标x z(非格子)
+	required float y = 3;
+	required int32 dir360 = 4;		//玩家移动到pos时的方向 0-360度
+	required int32 type = 5;		//1为到达目标点
+}
+
+message S2c_aoi_sprint {
+	required string rid = 1;
+	repeated float fpos = 2;
+	required float y = 3;
+}
+
+message S2c_aoi_changemap_type {		//跳转场景类型
+	required int32 type	= 1;				//0.为默认,1为飞鞋,2为传送门
+}
+
+message C2s_aoi_searchnpc {
+	required int32 npc_no = 1;
+}
+
+message S2c_aoi_relive_after {
+	required int32 place_holder = 1;
+}
+
+///////////////////野外boss///////////////////
+message Yewaiboss_belong_info {
+	required string id = 1;
+	required int32 remain_time = 2;	//剩余时间
+}
+
+message S2c_yewaiboss_belonglist {
+	repeated Yewaiboss_belong_info list = 1;
+	required string boss_id = 2;
+}
+
+message C2s_yewaiboss_belonglist {
+	required int32 place_holder = 1;
+}
+
+message Yewaiboss_score_info {
+	required string uid = 1;
+	required string name = 2;
+	required int32 hurt = 3;		//伤害百分比
+	required int32 score = 4;		//可获侠义点
+}
+
+message S2c_yewaiboss_scorelist {
+	repeated Yewaiboss_score_info list = 1;
+	required int32 can_score = 2;				//剩余可获侠义点
+	required int32 self_hurt = 3;				//自身伤害比
+	required int32 join_score = 4;				//保底可获得积分
+}
+
+message C2s_yewaiboss_scorelist {
+	required int32 place_holder = 1;
+}
+
+//////////////////变身buff删除///////////////
+message C2s_aoi_shapeshift_del {
+	required int32 buffid = 1;
+}
+
+message S2c_aoi_skillerror {
+	required string id = 1;			// 玩家 id
+	required int32 is_exist = 2	;	// 1存在, 0不存在
+	repeated int32 pos = 3; 		// x z
+	required float y = 4;
+}

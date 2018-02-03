@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using CCWin.SkinControl;
+using LuaFramework;
 
 namespace ProtoTool.View
 {
@@ -61,7 +62,7 @@ namespace ProtoTool.View
         /// 实例化Proto请求数据结构
         /// </summary>
         /// <returns></returns>
-        public byte[] InstanceProtoClass()
+        public ByteBuffer InstanceProtoClass()
         {
 
             return null;
